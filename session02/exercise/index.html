@@ -10,8 +10,50 @@
          実習2: 基本的なHTMLページ
          まずは以下のh1とpを自分の内容に書き換えてみよう
     ============================================ -->
-    <h1>はじめてのWebページ</h1>
-    <p>HTMLの勉強を始めました！</p>
+    <header>
+        <h1>はじめてのWebページ</h1>
+        <p>HTMLの勉強を始めました!</p>
+    </header>
+    
+    <main>
+      <section>
+          <h2>すいふぁの自己紹介</h2>
+          <p>ITエンジニア専攻の二年生です。</p>
+          <p>自分の夢のために学んでいます！</p>
+      </section>
+    
+      <br>
+      
+      <section>
+        <h2>趣味</h2>
+          <ul>
+            <li>ゲーム</li>
+            <li>野球観戦</li>
+            <li>読書</li>
+          </ul>
+      </section>
+
+      <section>
+        <h2>お問い合わせ</h2>
+        <form>
+            <div>
+                <label for="name">名前:</label>
+                <input type="text" id="name"
+                placeholder="山田太郎">
+            </div>
+            <div>
+                <label for="mail">メール</label>
+                <input type="email" id="mail"
+                placeholder="example@gmail.com">
+            </div>
+            <button type="submit">送信</button>
+        </form>
+      </section>
+       
+    </main>
+    <footer>
+        <p>&copy; 2026 すいふぁ</p>
+    </footer>
 
     <!-- ============================================
          実習3: 自己紹介ページを作ろう
