@@ -10,21 +10,28 @@
    ヒント: * で全要素の margin/padding を 0 に
           box-sizing: border-box でサイズ計算を楽に */
 
-* {
+* { margin: 0; padding: 0; box-sizing: border-box;
   /* ヒント: margin: 0; padding: 0; box-sizing: border-box; */
 }
 
-body {
+body { 
+  font-family:
+    "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background-color: #f3f4f6;
+  color: #333;
   /* ヒント: font-family, background-color: #f3f4f6, color: #333 */
 }
 
 /* --- 2. ヘッダー ---
    ヒント: 背景色 #2563eb, 文字色 white, padding, text-align: center */
 
-.header {
+.header { background-color: #2563eb;
+  color: white;
+  padding: 16px 24px;
+  text-align: center;
 }
 
-.header h1 {
+.header h1 {font-size: 24px;
   /* ヒント: font-size: 24px */
 }
 
@@ -35,12 +42,21 @@ body {
            padding: 32px, border-radius: 12px, box-shadow */
 
 .todo-card {
+  background-color: white;
+  max-width: 600px;
+  margin: 40px auto;       
+  padding: 32px;
+  border-radius: 12px;     
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  
 }
 
 /* --- 5. 入力エリア ---
    ヒント: display: flex で横並び, gap: 8px, margin-bottom: 24px */
 
-.input-area {
+.input-area { 
+  display: flex; 
+  gap: 8px;
+  margin-bottom: 24px; 
 }
 
 .todo-input {
@@ -52,28 +68,42 @@ body {
   /* ヒント: border-color: #2563eb, outline: none */
 }
 
-.todo-button {
+.todo-button { 
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   /* ヒント: padding: 12px 24px, background-color: #2563eb
              color: white, border: none, border-radius: 8px, cursor: pointer */
 }
 
-.todo-button:hover {
+.todo-button:hover { background-color: #1d4ed8;
   /* ヒント: background-color: #1d4ed8 */
 }
 
 /* --- 6. TODOリスト --- */
 
-.todo-list {
+.todo-list { list-style: none;
   /* ヒント: list-style: none */
 }
 
 .todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   /* ヒント: display: flex, align-items: center, justify-content: space-between
              padding: 12px 16px, margin-bottom: 8px
              background-color: #f9fafb, border: 1px solid #e5e7eb, border-radius: 8px */
 }
 
-.todo-item:hover {
+.todo-item:hover { background-color: #eff6ff;
   /* ヒント: background-color: #eff6ff */
 }
 
