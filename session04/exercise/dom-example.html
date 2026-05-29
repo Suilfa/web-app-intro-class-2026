@@ -36,6 +36,17 @@
 
     <script>
       // ↓↓↓ ここから下に、スライドのコードを書いてください ↓↓↓
+      // 要素の取得 アイテムを追加するボタンとリストを取得
+      const addItemBtn = document.getElementById("add-item-btn");
+      const itemList = document.getElementById("item-list");
+
+      // 「追加」ボタンをクリックしたときの処理
+      addItemBtn.addEventListener("click", () => {
+      // 新しいli要素を作成して追加
+      const newItem = document.createElement("li");
+      newItem.textContent = "サンマリノ";
+      itemList.appendChild(newItem);
+});
     </script>
   </body>
 </html>
