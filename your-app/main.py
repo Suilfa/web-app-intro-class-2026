@@ -96,7 +96,7 @@ def create_anime(anime: AnimeCreate):
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
-    # 新しいTODOを1件追加する（watched は 0=未鑑賞で登録）
+    # 新しいANIMESを1件追加する（watched は 0=未鑑賞で登録）
     # ? を使うことで、危険な文字列が混ざってもSQLが壊れない（SQLインジェクション対策）
     cursor.execute(
         "INSERT INTO animes (title, watched) VALUES (?, 0)",
@@ -112,7 +112,7 @@ def create_anime(anime: AnimeCreate):
 # PUT /animes/5 のように、URLの {anime_id} の部分が引数 anime_id に入る
 @app.put("/animes/{anime_id}")
 def update_anime(anime_id: int, anime: AnimeUpdate):
-    """TODOの完了状態を更新する"""
+    """ANIMEの鑑賞状態を更新する"""
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
@@ -124,9 +124,9 @@ def update_anime(anime_id: int, anime: AnimeUpdate):
         # 404エラー（見つからない）を返して処理を中断する
         raise HTTPException(status_code=404, detail="ANIME not found")
 
-    # watched（完了状態）を更新する。True/False は int() で 1/0 に変換して保存
+    # watched（鑑賞状態）を更新する。True/False は int() で 1/0 に変換して保存
     cursor.execute(
-        "UPDATE todos SET done = ? WHERE id = ?",
+        "UPDATE animes SET watched = ? WHERE id = ?",
         (int(anime.watched), anime_id),
     )
     conn.commit()  # 更新を確定する
