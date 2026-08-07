@@ -1,30 +1,30 @@
 /**
- * TODO App JavaScript - 完成版
+ * Watchlist ANIME JavaScript - 完成版
  * 第8回: セキュリティの基礎 & 総仕上げ
  *
  * 【このファイルの役割】
  *  ブラウザの画面（HTML）と、バックエンド（main.py）の橋渡しをする。
  *
  * 【全体の流れ】
- *  1. ページが開かれる → loadTodos() でサーバーからTODO一覧を取得
- *  2. renderTodos() が、取得したデータを画面のリストとして描画する
+ *  1. ページが開かれる → loadAnimes() でサーバーからANIME一覧を取得
+ *  2. renderAnimes() が、取得したデータを画面のリストとして描画する
  *  3. ユーザーが「追加・チェック・削除」を操作する
  *     → 対応する関数がサーバーに変更を送る（fetch）
- *     → 最後にもう一度 loadTodos() して、最新の状態を画面に反映する
+ *     → 最後にもう一度 loadAnimes() して、最新の状態を画面に反映する
  *
  * ※ fetch はサーバーと通信する命令。通信は時間がかかるので、
  *   async / await を使って「結果が返ってくるまで待つ」書き方をしている。
  */
 
-// サーバー側のAPIのアドレス（main.py の @app.get("/todos") などに対応）
+// サーバー側のAPIのアドレス（main.py の @app.get("/animes") などに対応）
 const API_URL = "/animes";
 
 // ============================================================
-// TODO操作（CRUD）
+// ANIME操作（CRUD）
 // ============================================================
 
 /**
- * TODO一覧を取得して表示する
+ * ANIME一覧を取得して表示する
  */
 async function loadAnimes() {
   // try ... catch: 通信中にエラーが起きても、アプリが止まらないようにする
@@ -49,7 +49,7 @@ async function loadAnimes() {
 }
 
 /**
- * 新しいTODOを追加する
+ * 見たいANIMEを追加する
  */
 async function addAnime() {
   // 入力欄の要素を取得し、入力された文字を読み取る（trimで前後の空白を除去）
@@ -58,7 +58,7 @@ async function addAnime() {
 
   // 送信前のチェック（バリデーション）: 空のときは送らずに注意を表示
   if (title === "") {
-    showError("TODOのタイトルを入力してください");
+    showError("見たいアニメのタイトルを入力してください");
     return;
   }
 
@@ -115,12 +115,12 @@ async function toggleAnime(id, currentWatched) {
 }
 
 /**
- * TODOを削除する
- * id: 削除したいTODOの番号
+ * ANIMEを削除する
+ * id: 削除したいANIMEの番号
  */
 async function deleteAnime(id) {
   try {
-    // /todos/5 のようなアドレスに対して削除を依頼する
+    // /animes/5 のようなアドレスに対して削除を依頼する
     const response = await fetch(`${API_URL}/${id}`, {
       method: "DELETE", // DELETE = データを削除する
     });
@@ -142,9 +142,9 @@ async function deleteAnime(id) {
 // ============================================================
 
 /**
- * TODOリストを描画する（XSS対策: createElement + textContent）
+ * ANIMEリストを描画する（XSS対策: createElement + textContent）
  *
- * 受け取ったTODOの配列をもとに、画面に並べる<li>を1件ずつ組み立てる。
+ * 受け取ったANIMEの配列をもとに、画面に並べる<li>を1件ずつ組み立てる。
  *
  * 【XSS対策のポイント】
  *  innerHTML に文字列を直接入れると、入力に紛れ込んだ<script>などが
@@ -173,7 +173,7 @@ function renderAnimes(animes) {
     // チェックが変わったら、完了状態を切り替える関数を呼ぶ
     checkbox.addEventListener("change", () => toggleAnime(anime.id, anime.watched));
 
-    // TODOのタイトル文字。textContent で安全に入れる（XSS対策）
+    // ANIMEのタイトル文字。textContent で安全に入れる（XSS対策）
     const titleSpan = document.createElement("span");
     titleSpan.className = "anime-title";
     titleSpan.textContent = anime.title;
@@ -221,5 +221,5 @@ document.getElementById("anime-form").addEventListener("submit", function (e) {
   addAnime(); // 自分で用意した追加処理を呼ぶ
 });
 
-// ページ読み込み時に、まずTODO一覧を取得して表示する（ここがスタート地点）
+// ページ読み込み時に、まずANIME一覧を取得して表示する（ここがスタート地点）
 loadAnimes();

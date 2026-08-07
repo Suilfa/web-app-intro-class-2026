@@ -1,5 +1,5 @@
 """
-TODOアプリ バックエンド - 完成版
+Watchlist ANIME バックエンド - 完成版
 第8回: セキュリティの基礎 & 総仕上げ
 """
 
@@ -142,7 +142,7 @@ def delete_anime(anime_id: int):
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
-    # 削除する前に、その id のTODOが存在するか確認する
+    # 削除する前に、その id のANIMEが存在するか確認する
     cursor.execute("SELECT id FROM animes WHERE id = ?", (anime_id,))
     existing = cursor.fetchone()
     if existing is None:
