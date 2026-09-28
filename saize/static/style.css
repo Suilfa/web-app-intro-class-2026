@@ -1,0 +1,298 @@
+/* ============================================
+   サイゼリヤガチャ CSS
+   TODOアプリと同じ構成（リセット → 全体 → 各パーツ → レスポンシブ）
+   ============================================ */
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ページ全体 */
+body {
+  font-family:
+    "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background-color: #f3f4f6;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- ヘッダー --- */
+/* サイゼリヤっぽい緑をテーマカラーにする */
+.header {
+  background-color: #15803d;
+  color: white;
+  padding: 16px 24px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* --- 本文をまとめる箱 --- */
+.container {
+  max-width: 700px;
+  width: 100%;
+  margin: 24px auto;
+  padding: 0 12px;
+  flex: 1;
+}
+
+/* --- エラーメッセージ --- */
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid #fecaca;
+}
+
+/* --- ガチャエリア --- */
+.gacha-card {
+  background-color: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.gacha-rates {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* ガチャボタン（大きく目立たせる） */
+.gacha-button {
+  padding: 16px 48px;
+  background-color: #15803d;
+  color: white;
+  border: none;
+  border-radius: 999px; /* 完全な丸角（カプセルの形） */
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.4);
+}
+
+.gacha-button:hover {
+  background-color: #166534;
+  transform: translateY(-2px); /* 少し浮き上がる */
+}
+
+/* :disabled = ボタンが無効化されている（回転中）とき */
+.gacha-button:disabled {
+  background-color: #9ca3af;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- ガチャ結果 --- */
+.gacha-result {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  border: 3px solid #d1d5db;
+  position: relative; /* NEW!バッジを右上に置く基準にする */
+  /* 表示された瞬間にふわっと出てくるアニメーション */
+  animation: pop-in 0.4s ease-out;
+}
+
+/* @keyframes = アニメーションの動きの定義。小さい状態から拡大しながら現れる */
+@keyframes pop-in {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.result-rarity {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.result-emoji {
+  font-size: 64px;
+  line-height: 1.2;
+}
+
+.result-name {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 8px;
+  word-break: break-word;
+}
+
+.result-price {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* NEW! バッジ（初ゲットのときだけ表示） */
+.result-new {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  background-color: #dc2626;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 999px;
+  transform: rotate(12deg); /* 少し傾けてシールっぽく */
+}
+
+/* --- レアリティごとの色 --- */
+/* ガチャ結果の枠と文字の色をレアリティで変える */
+.gacha-result.rarity-n {
+  border-color: #9ca3af;
+}
+.gacha-result.rarity-n .result-rarity {
+  color: #6b7280;
+}
+
+.gacha-result.rarity-r {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+.gacha-result.rarity-r .result-rarity {
+  color: #2563eb;
+}
+
+.gacha-result.rarity-sr {
+  border-color: #a855f7;
+  background-color: #faf5ff;
+}
+.gacha-result.rarity-sr .result-rarity {
+  color: #9333ea;
+}
+
+.gacha-result.rarity-ssr {
+  border-color: #f59e0b;
+  /* 金色っぽいグラデーション背景で豪華にする */
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.4); /* 金色に光る */
+}
+.gacha-result.rarity-ssr .result-rarity {
+  color: #d97706;
+}
+
+/* --- コレクション（図鑑） --- */
+.collection-card {
+  background-color: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.collection-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between; /* タイトルと達成数を両端に */
+  align-items: center;
+}
+
+.collection-progress {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: normal;
+}
+
+/* 図鑑はカードを格子状（グリッド）に並べる */
+.collection-list {
+  list-style: none;
+  display: grid;
+  /* 1枚130px以上を保ちつつ、入るだけ横に並べる */
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+/* 図鑑のカード1枚ぶん */
+.collection-item {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+  background-color: #f9fafb;
+}
+
+/* レアリティで枠の色を変える */
+.collection-item.rarity-r {
+  border-color: #93c5fd;
+}
+.collection-item.rarity-sr {
+  border-color: #d8b4fe;
+}
+.collection-item.rarity-ssr {
+  border-color: #fcd34d;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+
+/* 未ゲットのカードは薄く表示する */
+.collection-item.locked {
+  opacity: 0.45;
+  background-color: #f3f4f6;
+}
+
+.item-emoji {
+  font-size: 32px;
+}
+
+.item-name {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 6px;
+  word-break: break-word;
+  min-height: 2.6em; /* 名前が1行でも2行でもカードの高さをそろえる */
+  line-height: 1.3;
+}
+
+.item-meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* --- フッター --- */
+.footer {
+  background-color: #374151;
+  color: #9ca3af;
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .gacha-card,
+  .collection-card {
+    padding: 16px;
+  }
+
+  .collection-list {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}

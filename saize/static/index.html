@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サイゼリヤガチャ</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1>🍴 サイゼリヤガチャ</h1>
+    </header>
+
+    <main class="container">
+      <!-- エラーメッセージ表示エリア -->
+      <div id="error-message" class="error-message" style="display: none"></div>
+
+      <!-- ガチャエリア -->
+      <section class="gacha-card">
+        <p class="gacha-rates">排出率: SSR 2% / SR 8% / R 30% / N 60%</p>
+        <button id="gacha-button" class="gacha-button">ガチャを引く！</button>
+
+        <!-- ガチャ結果（引いたら表示される） -->
+        <div id="gacha-result" class="gacha-result" style="display: none"></div>
+      </section>
+
+      <!-- コレクション（図鑑）エリア -->
+      <section class="collection-card">
+        <h2 class="collection-title">
+          メニュー図鑑
+          <span id="collection-progress" class="collection-progress"></span>
+        </h2>
+        <ul id="collection-list" class="collection-list"></ul>
+      </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+      <p>&copy; 2026 サイゼリヤガチャ（非公式ファンアプリ）</p>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
